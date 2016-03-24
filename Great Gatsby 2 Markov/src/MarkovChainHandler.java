@@ -4,6 +4,7 @@ import java.util.Hashtable;
 public class MarkovChainHandler
 {
 	private BufferedReader read;
+	private PrintWriter write;
 	private MarkovChain mChain;
 	
 	private Hashtable<String, Integer> wordAppearances;
@@ -18,9 +19,10 @@ public class MarkovChainHandler
 	 * @throws FileNotFoundException If the file with the name fileName is not found
 	 * @throws IOException If there's some other type of exception
 	 */
-	public MarkovChainHandler(String fileName, int order) throws FileNotFoundException, IOException 
+	public MarkovChainHandler(String inputName, String outputName, int order) throws FileNotFoundException, IOException 
 	{
-		read = new BufferedReader(new FileReader(fileName));
+		read = new BufferedReader(new FileReader(inputName));
+		write = new PrintWriter(new BufferedWriter(new FileWriter(outputName)));
 		mChain = new MarkovChain();
 		wordAppearances = new Hashtable<String, Integer>(DEFAULT_HASHTABLE_SIZE);
 		

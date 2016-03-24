@@ -14,11 +14,9 @@ public class GatsbyTester {
 		System.out.println("Markov chain order?");
 		int order = k.nextInt();
 		
-		MarkovChainHandler chain = new MarkovChainHandler(inputName, order);
-		
 		System.out.println("File to output to?");
 		
-		String outputName = k.nextLine();
+		MarkovChainHandler chain = new MarkovChainHandler(inputName, k.nextLine(), order);
 		
 		System.out.println("Number of characters to write?");
 		int writingLength = k.nextInt();
