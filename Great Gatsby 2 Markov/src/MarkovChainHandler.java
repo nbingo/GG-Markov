@@ -8,7 +8,7 @@ public class MarkovChainHandler
 	private MarkovChain mChain;
 	
 	private Hashtable<String, Integer> wordAppearances;
-	private static final int DEFAULT_HASHTABLE_SIZE = 270_585;
+	private static final int DEFAULT_HASHTABLE_SIZE = 6_624_765;
 	
 	private String base;
 	

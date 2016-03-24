@@ -10,7 +10,7 @@ import java.util.Hashtable;
 public class MarkovChain 
 {
 	private Hashtable<String, MarkovNode> nodeTable;
-	private static final int DEFAULT_HASHTABLE_SIZE = 270585;
+	private static final int DEFAULT_HASHTABLE_SIZE = 6_624_765;
 	
 	public MarkovChain(int size)
 	{
