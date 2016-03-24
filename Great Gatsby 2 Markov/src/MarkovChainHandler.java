@@ -1,6 +1,19 @@
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.PrintWriter;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Hashtable;
 
+/**
+ * A class to make handling a {@link MarkovChain} easier.
+ * @author Nomi Ringach
+ * @version 1.0.0
+ * @since 3.22.16
+ * @see MarkovChain
+ */
 public class MarkovChainHandler
 {
 	private BufferedReader read;

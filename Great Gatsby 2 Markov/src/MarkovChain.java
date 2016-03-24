@@ -1,11 +1,13 @@
 import java.util.Hashtable;
 
 /**
- * Creates a Markov chain which can be used for fancy sentence creation stuff.
+ * Creates a Markov chain which can be used for fancy sentence creation. It's still pretty low-level, 
+ * so use {@link MarkovChainHandler} to make the ease of use better.
  * @author Nomi Ringach
  * @since 3.22.16
  * @version 1.0.0
  * @see MarkovNode
+ * @see MarkovChainHandler
  */
 public class MarkovChain 
 {
@@ -50,6 +52,7 @@ public class MarkovChain
 		return nodeTable.get(base).getRandomNext().getWord();
 	}
 	
+	@Override
 	public String toString()
 	{
 		return nodeTable.toString();

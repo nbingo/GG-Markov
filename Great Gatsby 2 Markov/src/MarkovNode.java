@@ -1,4 +1,12 @@
 import java.util.ArrayList;
+
+/**
+ * A simple node for use in a {@link MarkovChain Markov chain}.
+ * @author Nomi Ringach
+ * @version 1.0.0
+ * @since 3.22.16
+ * @see MarkovChain
+ */
 public class MarkovNode 
 {
 	private String word;
@@ -62,6 +70,7 @@ public class MarkovNode
 		return sum;
 	}
 	
+	@Override
 	public String toString()
 	{
 		return word;
