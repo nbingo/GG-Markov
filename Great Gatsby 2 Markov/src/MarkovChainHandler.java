@@ -43,7 +43,10 @@ public class MarkovChainHandler
 		read.close();
 	}
 
-	
+	public void createStory(int writingLength)
+	{
+		
+	}
 	
 	private String firstNChars(int n) throws IOException
 	{

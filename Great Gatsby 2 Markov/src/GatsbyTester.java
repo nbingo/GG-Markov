@@ -2,10 +2,9 @@ import java.io.*;
 import java.util.Scanner;
 
 public class GatsbyTester {
-	@SuppressWarnings("unused")
+
 	public static void main(String[] args) throws FileNotFoundException, IOException
 	{
-		
 		Scanner k = new Scanner (System.in);
 		
 		System.out.println("File to read from? (include extension)");
@@ -16,12 +15,17 @@ public class GatsbyTester {
 		
 		System.out.println("File to output to?");
 		
-		MarkovChainHandler chain = new MarkovChainHandler(inputName, k.nextLine(), order);
+		String outputName = k.nextLine();
 		
 		System.out.println("Number of characters to write?");
 		int writingLength = k.nextInt();
 		
+		MarkovChainHandler chain = new MarkovChainHandler(inputName, outputName, order);
+		System.out.println("Created Markov chain successfully.");
+		
+		chain.createStory(writingLength);
+		System.out.println("Story written successfully.");
+		
 		k.close();
 	}
-
 }
