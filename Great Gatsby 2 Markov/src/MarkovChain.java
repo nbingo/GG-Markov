@@ -7,17 +7,17 @@ import java.util.Hashtable;
  * @version 1.0.0
  * @see MarkovNode
  */
-public class MarkovGraph 
+public class MarkovChain 
 {
 	private Hashtable<String, MarkovNode> nodeTable;
-	private static final int DEFAULT_HASHTABLE_SIZE = 1000;
+	private static final int DEFAULT_HASHTABLE_SIZE = 270585;
 	
-	public MarkovGraph(int size)
+	public MarkovChain(int size)
 	{
 		nodeTable = new Hashtable<String, MarkovNode>(size);
 	}
 	
-	public MarkovGraph()
+	public MarkovChain()
 	{
 		this(DEFAULT_HASHTABLE_SIZE);
 	}
