@@ -12,6 +12,7 @@ public class GatsbyTester {
 		
 		System.out.println("Markov chain order?");
 		int order = k.nextInt();
+		k.nextLine();
 		
 		System.out.println("File to output to?");
 		

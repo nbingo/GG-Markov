@@ -34,6 +34,7 @@ public class MarkovChainHandler
 		while(read.ready())
 		{
 			String current = previous.substring(1) + (char)read.read();			// Shift the string over 1
+			mChain.addNode(current);
 			mChain.addEdge(previous, current);									// Add the edge from the old string to the new one
 			addAppearance(current);												// Add an appearance of that ward to the table
 			base = chooseBetweenTwo(base, current);							    // Set the base to the most common of the base and the new word
@@ -45,7 +46,17 @@ public class MarkovChainHandler
 
 	public void createStory(int writingLength)
 	{
+		String previous = base;
+		write.print(previous);
 		
+		for (int i = 1; i < writingLength; i++)
+		{
+			String current = mChain.getNextLetter(previous);
+			write.print(current.substring(current.length()-1));
+			previous = current;
+		}
+		
+		write.close();
 	}
 	
 	private String firstNChars(int n) throws IOException
