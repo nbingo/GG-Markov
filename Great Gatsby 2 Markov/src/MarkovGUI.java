@@ -34,48 +34,52 @@ public class MarkovGUI extends Application{
 		grid.setVgap(10);
 		grid.setPadding(new Insets(25, 25, 25, 25));
 
-		Scene scene = new Scene(grid, 425, 280);
+		Scene scene = new Scene(grid, 425, 350);
 		primaryStage.setScene(scene);
 
 		Text scenetitle = new Text("Markov Chain GUI");
 		scenetitle.setFont(Font.font("Helvetica", FontWeight.NORMAL, 24));
 		grid.add(scenetitle, 0, 0, 2, 1);
+		
+		Text sceneAuthor = new Text("By Nomi Ringach");
+		sceneAuthor.setFont(Font.font("Helvetica", FontWeight.NORMAL, 10));
+		grid.add(sceneAuthor, 0, 1);
 
 		Label inputFile = new Label("Input Filename:");
-		grid.add(inputFile, 0, 1);
+		grid.add(inputFile, 0, 2);
 
 		TextField inputFileField = new TextField();
-		grid.add(inputFileField, 1, 1);
+		grid.add(inputFileField, 1, 2);
 
 		Label order = new Label("Markov Chain Order:");
-		grid.add(order, 0, 2);
+		grid.add(order, 0, 3);
 
 		TextField orderField = new TextField();
-		grid.add(orderField, 1, 2);
+		grid.add(orderField, 1, 3);
 
 		Label outputFile = new Label("Output Filename:");
-		grid.add(outputFile, 0, 3);
+		grid.add(outputFile, 0, 4);
 
 		TextField outputFileField = new TextField();
-		grid.add(outputFileField, 1, 3);
+		grid.add(outputFileField, 1, 4);
 
 		Label numChars = new Label("Number of characters to write:");
-		grid.add(numChars, 0, 4);
+		grid.add(numChars, 0, 5);
 
 		TextField numCharsField = new TextField();
-		grid.add(numCharsField, 1, 4);
+		grid.add(numCharsField, 1, 5);
 
 		Button btn = new Button("Create Story");
 		HBox hbBtn = new HBox(10);
 		hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
 		hbBtn.getChildren().add(btn);
-		grid.add(hbBtn, 1, 6);
+		grid.add(hbBtn, 1, 7);
 
 		final Text chainTarget = new Text();
-		grid.add(chainTarget, 1, 7);
+		grid.add(chainTarget, 1, 8);
 
 		final Text storyTarget = new Text();
-		grid.add(storyTarget, 1, 8);
+		grid.add(storyTarget, 1, 9);
 
 		btn.setOnAction(new EventHandler<ActionEvent>() {
 
