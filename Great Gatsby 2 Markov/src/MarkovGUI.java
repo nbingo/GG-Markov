@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.IOException;
 
 import javafx.application.Application;
@@ -15,6 +16,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
 public class MarkovGUI extends Application{
@@ -45,19 +48,28 @@ public class MarkovGUI extends Application{
 		sceneAuthor.setFont(Font.font("Helvetica", FontWeight.NORMAL, 10));
 		grid.add(sceneAuthor, 0, 1);
 
-		Label inputFile = new Label("Input Filename:");
-		grid.add(inputFile, 0, 2);
-
-		TextField inputFileField = new TextField();
-		grid.add(inputFileField, 1, 2);
-
-		Label order = new Label("Markov Chain Order:");
+		FileChooser inputGUI = new FileChooser();
+		inputGUI.getExtensionFilters().add(new ExtensionFilter("Plaintext (*.txt)", "*.txt"));
+		Button inputBtn = new Button("Choose Input File");
+		HBox inputBox = new HBox(10);
+		inputBox.setAlignment(Pos.CENTER);
+		inputBox.getChildren().add(inputBtn);
+		grid.add(inputBox, 0, 2, 2, 1);
+		StringBuffer inputName = new StringBuffer();;
+		inputBtn.setOnAction((event) ->
+						{
+							File inputFile = inputGUI.showOpenDialog(primaryStage);
+							inputName.append(inputFile.getAbsolutePath());
+						}
+				);
+		
+		Label order = new Label("Markov chain order:");
 		grid.add(order, 0, 3);
 
 		TextField orderField = new TextField();
 		grid.add(orderField, 1, 3);
 
-		Label outputFile = new Label("Output Filename:");
+		Label outputFile = new Label("Output filename:");
 		grid.add(outputFile, 0, 4);
 
 		TextField outputFileField = new TextField();
@@ -85,13 +97,12 @@ public class MarkovGUI extends Application{
 
 			@Override
 			public void handle(ActionEvent e) {
-				String inputName = inputFileField.getText();
 				int chainOrder = Integer.parseInt(orderField.getText());
-				String outputName = outputFileField.getText();
+				String outputName = makeOutputString(inputName, outputFileField.getText());
 				int outputChars = Integer.parseInt(numCharsField.getText());
 
 				try {
-					MarkovChainHandler mChain = new MarkovChainHandler(inputName, outputName, chainOrder);
+					MarkovChainHandler mChain = new MarkovChainHandler(inputName.toString(), outputName, chainOrder);
 
 					chainTarget.setFill(Color.FORESTGREEN);
 					chainTarget.setText("Chain created successfully!");
@@ -111,5 +122,10 @@ public class MarkovGUI extends Application{
 		});
 		
 		primaryStage.show();
+	}
+	
+	private String makeOutputString(StringBuffer input, String output)
+	{
+		return input.toString().substring(0, input.toString().lastIndexOf('/')+1) + output;
 	}
 }
