@@ -2,8 +2,6 @@ import java.io.File;
 import java.io.IOException;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -43,7 +41,7 @@ public class MarkovGUI extends Application{
 		Text scenetitle = new Text("Markov Chain GUI");
 		scenetitle.setFont(Font.font("Helvetica", FontWeight.NORMAL, 24));
 		grid.add(scenetitle, 0, 0, 2, 1);
-		
+
 		Text sceneAuthor = new Text("By Nomi Ringach");
 		sceneAuthor.setFont(Font.font("Helvetica", FontWeight.NORMAL, 10));
 		grid.add(sceneAuthor, 0, 1);
@@ -57,12 +55,12 @@ public class MarkovGUI extends Application{
 		grid.add(inputBox, 0, 2, 2, 1);
 		StringBuffer inputName = new StringBuffer();;
 		inputBtn.setOnAction((event) ->
-						{
-							File inputFile = inputGUI.showOpenDialog(primaryStage);
-							inputName.append(inputFile.getAbsolutePath());
-						}
+		{
+			File inputFile = inputGUI.showOpenDialog(primaryStage);
+			inputName.append(inputFile.getAbsolutePath());
+		}
 				);
-		
+
 		Label order = new Label("Markov chain order:");
 		grid.add(order, 0, 3);
 
@@ -93,37 +91,33 @@ public class MarkovGUI extends Application{
 		final Text storyTarget = new Text();
 		grid.add(storyTarget, 1, 9);
 
-		btn.setOnAction(new EventHandler<ActionEvent>() {
+		btn.setOnAction((e) -> {
+			int chainOrder = Integer.parseInt(orderField.getText());
+			String outputName = makeOutputString(inputName, outputFileField.getText());
+			int outputChars = Integer.parseInt(numCharsField.getText());
 
-			@Override
-			public void handle(ActionEvent e) {
-				int chainOrder = Integer.parseInt(orderField.getText());
-				String outputName = makeOutputString(inputName, outputFileField.getText());
-				int outputChars = Integer.parseInt(numCharsField.getText());
+			try {
+				MarkovChainHandler mChain = new MarkovChainHandler(inputName.toString(), outputName, chainOrder);
 
-				try {
-					MarkovChainHandler mChain = new MarkovChainHandler(inputName.toString(), outputName, chainOrder);
+				chainTarget.setFill(Color.FORESTGREEN);
+				chainTarget.setText("Chain created successfully!");
 
-					chainTarget.setFill(Color.FORESTGREEN);
-					chainTarget.setText("Chain created successfully!");
+				mChain.createStory(outputChars);
 
-					mChain.createStory(outputChars);
+				storyTarget.setFill(Color.FORESTGREEN);
+				storyTarget.setText("Story created Successfully!");
+			} catch (IOException e1) {
+				chainTarget.setFill(Color.RED);
+				chainTarget.setText("An error occurred!");
 
-					storyTarget.setFill(Color.FORESTGREEN);
-					storyTarget.setText("Story created Successfully!");
-				} catch (IOException e1) {
-					chainTarget.setFill(Color.RED);
-					chainTarget.setText("An error occurred!");
-					
-					storyTarget.setFill(Color.RED);
-					storyTarget.setText(e1.getMessage());
-				}
+				storyTarget.setFill(Color.RED);
+				storyTarget.setText(e1.getMessage());
 			}
 		});
-		
+
 		primaryStage.show();
 	}
-	
+
 	private String makeOutputString(StringBuffer input, String output)
 	{
 		return input.toString().substring(0, input.toString().lastIndexOf('/')+1) + output;
