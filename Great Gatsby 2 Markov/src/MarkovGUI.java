@@ -58,13 +58,13 @@ public class MarkovGUI extends Application{
 		{
 			File inputFile = inputGUI.showOpenDialog(primaryStage);
 			inputName.append(inputFile.getAbsolutePath());
-		}
-				);
+		});
 
 		Label order = new Label("Markov chain order:");
 		grid.add(order, 0, 3);
 
 		TextField orderField = new TextField();
+		orderField.setPromptText("e.g. 1, 2, 3...");
 		grid.add(orderField, 1, 3);
 
 		Label outputFile = new Label("Output filename:");
@@ -97,11 +97,15 @@ public class MarkovGUI extends Application{
 			int outputChars = Integer.parseInt(numCharsField.getText());
 
 			try {
+				chainTarget.setFill(Color.YELLOW);
+				chainTarget.setText("Creating markov chhain...");
 				MarkovChainHandler mChain = new MarkovChainHandler(inputName.toString(), outputName, chainOrder);
 
 				chainTarget.setFill(Color.FORESTGREEN);
 				chainTarget.setText("Chain created successfully!");
 
+				storyTarget.setFill(Color.YELLOW);
+				storyTarget.setText("Writing story...");
 				mChain.createStory(outputChars);
 
 				storyTarget.setFill(Color.FORESTGREEN);
