@@ -53,7 +53,7 @@ public class MarkovGUI extends Application{
 		inputBox.setAlignment(Pos.CENTER);
 		inputBox.getChildren().add(inputBtn);
 		grid.add(inputBox, 0, 2, 2, 1);
-		StringBuffer inputName = new StringBuffer();;
+		StringBuffer inputName = new StringBuffer();
 		inputBtn.setOnAction((event) ->
 		{
 			File inputFile = inputGUI.showOpenDialog(primaryStage);
@@ -110,6 +110,7 @@ public class MarkovGUI extends Application{
 
 				storyTarget.setFill(Color.FORESTGREEN);
 				storyTarget.setText("Story created Successfully!");
+				
 			} catch (IOException e1) {
 				chainTarget.setFill(Color.RED);
 				chainTarget.setText("An error occurred!");
