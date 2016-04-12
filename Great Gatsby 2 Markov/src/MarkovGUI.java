@@ -71,6 +71,7 @@ public class MarkovGUI extends Application{
 		grid.add(outputFile, 0, 4);
 
 		TextField outputFileField = new TextField();
+		outputFileField.setPromptText("e.g. markov.txt");
 		grid.add(outputFileField, 1, 4);
 
 		Label numChars = new Label("Number of characters to write:");
