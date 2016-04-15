@@ -76,7 +76,7 @@ public class MarkovChainHandler
 	{
 		String first = "";
 		for (int i = 0; i < n; i++)
-			first += read.read();
+			first += (char)read.read();
 		return first;
 	}
 	
